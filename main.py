@@ -138,3 +138,33 @@ async def weekly_update_agent(team_name: str = "SEC"):
     )
     asyncio.create_task(agent.run())
     return {"status": "task started"}
+
+
+@app.get("/jira-ticket-agent/{project_key}")
+async def jira_ticket_agent(project_key: str):
+    system_prompt = """
+    You are a Jira ticket creation agent responsible for creating and managing tickets.
+    
+    High level steps:
+    1. Analyze the provided ticket information
+    2. Create a Jira ticket with appropriate fields
+    3. Set priority, assignee, and labels as needed
+    4. Send confirmation to Slack channel
+    
+    Things to remember:
+    - Use appropriate issue types (Bug, Story, Task, etc.)
+    - Set correct priority levels
+    - Include detailed descriptions and acceptance criteria
+    - Always confirm ticket creation by sending a message to Slack
+    """
+    
+    agent = Agent(
+        name="jira-ticket-agent",
+        description="Agent for creating and managing Jira tickets",
+        system_prompt=system_prompt,
+        prompt=f"Create ticket in project: {project_key}",
+        mcp_servers=["jira", "slack"],
+    )
+    
+    asyncio.create_task(agent.run())
+    return {"status": "task started"}

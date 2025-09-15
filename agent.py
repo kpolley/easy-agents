@@ -69,6 +69,15 @@ mcp_config = {
                 "VIRUSTOTAL_API_KEY": os.getenv("VIRUSTOTAL_API_KEY"),
             },
         },
+        "jira": {
+            "command": "uv",
+            "args": ["run", "mcps/jira.py"],
+            "env": {
+                "JIRA_HOST": os.getenv("JIRA_HOST"),
+                "JIRA_USERNAME": os.getenv("JIRA_USERNAME"),
+                "JIRA_API_TOKEN": os.getenv("JIRA_API_TOKEN"),
+            },
+        },
     }
 }
 
