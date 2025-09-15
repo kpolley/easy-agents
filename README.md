@@ -45,7 +45,7 @@ This agent triages Github Dependabot alerts by evaluating vulnerability impact, 
 Every Sunday, this agent reviews Linear tickets and projects for their team. It writes a report on current projects, what got done that week and by whom.  
 
 ### [Jira Ticket Agent](main.py#L143-L170)
-This agent creates and manages Jira tickets based on natural language instructions. It can create tickets with appropriate fields, set priorities, assignees, and labels, and send confirmations to Slack channels.
+This agent creates and manages Jira tickets based on natural language instructions. It can create tickets with appropriate fields, set priorities, assignees, and labels, and send confirmations to Slack channels. See the [Jira Integration Guide](docs/JIRA_INTEGRATION.md) for detailed setup instructions.
 
 ## Why This Approach Works
 
@@ -110,6 +110,11 @@ JIRA_API_TOKEN=your-jira-api-token
 1. A Jira Cloud instance
 2. An API token generated from your Atlassian account
 3. Appropriate permissions to create and manage issues in the target project
+
+## Documentation
+
+- **[Jira Integration Guide](docs/JIRA_INTEGRATION.md)** - Comprehensive guide for setting up and using the Jira MCP server integration
+- **[Deployment Guide](DEPLOYMENT.md)** - Production deployment instructions
 
 ### Creating Custom Agents
 
