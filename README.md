@@ -1,6 +1,6 @@
 # Easy Agents
 
-![Easy Agents](https://static.kpolley.com/easyagents.png)
+![Easy Agents](https://static.kpolley.com/easyagents/easyagents.png)
 
 A novel approach to automation that replaces traditional scripting with simple natural language instructions. Powered by Claude Agent SDK and MCP tool-calling.
 
