@@ -28,7 +28,7 @@ That's it! Your agent is ready to handle this complex and ambiguous security wor
 
 ## Real-World Examples
 
-This repository includes four working examples that demonstrate the framework's capabilities. It utilizes multiple 3rd party MCP servers including [Panther Security Monitoring](https://github.com/panther-labs/mcp-panther), [VirusTotal](https://github.com/BurtTheCoder/mcp-virustotal), [Github](https://github.com/github/github-mcp-server), [Linear](https://linear.app/changelog/2025-05-01-mcp), and [Slack](https://github.com/modelcontextprotocol/servers-archived/tree/main/src/slack) MCP servers.
+This repository includes four working examples that demonstrate the framework's capabilities. It utilizes multiple 3rd party MCP servers including [Panther Security Monitoring](https://github.com/panther-labs/mcp-panther), [VirusTotal](https://github.com/BurtTheCoder/mcp-virustotal), [Github](https://github.com/github/github-mcp-server), [Linear](https://linear.app/changelog/2025-05-01-mcp), [Slack](https://github.com/modelcontextprotocol/servers-archived/tree/main/src/slack), and custom Jira MCP servers.
 
 While these examples are cybersecurity focused, this framework can be used to build agents for any team such as those in product engineering or customer support.
 
@@ -43,6 +43,9 @@ This agent triages Github Dependabot alerts by evaluating vulnerability impact, 
 
 ### [Weekly Summary Agent](main.py#L121-L140)
 Every Sunday, this agent reviews Linear tickets and projects for their team. It writes a report on current projects, what got done that week and by whom.  
+
+### [Jira Ticket Agent](main.py#L143-L170)
+This agent creates and manages Jira tickets based on natural language instructions. It can create tickets with appropriate fields, set priorities, assignees, and labels, and send confirmations to Slack channels. See the [Jira Integration Guide](docs/JIRA_INTEGRATION.md) for detailed setup instructions.
 
 ## Why This Approach Works
 
@@ -76,6 +79,42 @@ uv sync
 ```bash
 uv run fastapi dev main.py
 ```
+
+### Environment Variables
+
+Create a `.env` file in the project root with the following variables:
+
+```bash
+# GitHub Integration
+GITHUB_TOKEN=your-github-token
+
+# Slack Integration
+SLACK_BOT_TOKEN=xoxb-your-slack-bot-token
+SLACK_TEAM_ID=your-slack-team-id
+SLACK_CHANNEL_IDS=channel1,channel2
+
+# Panther Security Monitoring
+PANTHER_INSTANCE_URL=https://your-instance.runpanther.io
+PANTHER_API_TOKEN=your-panther-api-token
+
+# VirusTotal
+VIRUSTOTAL_API_KEY=your-virustotal-api-key
+
+# Jira Integration
+JIRA_HOST=https://your-instance.atlassian.net
+JIRA_USERNAME=your-email@company.com
+JIRA_API_TOKEN=your-jira-api-token
+```
+
+**Note**: The Jira integration requires:
+1. A Jira Cloud instance
+2. An API token generated from your Atlassian account
+3. Appropriate permissions to create and manage issues in the target project
+
+## Documentation
+
+- **[Jira Integration Guide](docs/JIRA_INTEGRATION.md)** - Comprehensive guide for setting up and using the Jira MCP server integration
+- **[Deployment Guide](DEPLOYMENT.md)** - Production deployment instructions
 
 ### Creating Custom Agents
 
